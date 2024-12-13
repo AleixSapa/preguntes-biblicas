@@ -271,6 +271,8 @@ def PreguntaDeTipusSi_o_No(LaPregunta):
     if respostaUsuari==LaPregunta['resposta']:
         print("Has Encertat")
         Puntuacio+=1
+    elif respostaUsuari=="Exit":
+        return "exit"
     else:
         print("No Has Encertat")
         Fallades+=1
@@ -286,6 +288,8 @@ def PreguntaDeTipusNumero(LaPregunta):
     if respostaUsuari==LaPregunta['resposta']:
         print("Has Encertat")
         Puntuacio+=1
+    elif respostaUsuari=="Exit":
+        return "exit"
     else:
         print("No Has Encertat")
         Fallades+=1
@@ -296,9 +300,12 @@ print("Hi ha preguntes que són de sí o no, i hi ha altres que són de 1, 2 o 3
 print("")
 for i, pregunta in enumerate (preguntas):
     if pregunta['tipus']=="Si_o_No":
-        PreguntaDeTipusSi_o_No(pregunta)
+        if PreguntaDeTipusSi_o_No(pregunta)=="exit":
+            break
+    
     elif pregunta['tipus']=="Numero":
-        PreguntaDeTipusNumero(pregunta)
+        if PreguntaDeTipusNumero(pregunta)=="exit":
+            break
     print("")
 
 PuntuacioText=str(Puntuacio)
